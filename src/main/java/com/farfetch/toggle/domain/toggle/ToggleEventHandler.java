@@ -22,7 +22,7 @@ public class ToggleEventHandler {
 		greeting.setMsg("Toggle: [" + toggle.getName() + "] updated to Value: ["  + toggle.isValue() + "]");
 		greeting.setName(toggle.getName());
 		
-		this.greetingKafkaTemplate.send(toggle.getName(), greeting);
+//		this.greetingKafkaTemplate.send(toggle.getName(), greeting);
 	}
 	
 }
