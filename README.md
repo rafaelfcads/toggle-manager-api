@@ -74,7 +74,7 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
   
 2. Com o token do usuário `admin` em mãos e em tempo válido, podemos criar então um novo usuário de sistema, que represente nossa API consumidora 
   
-	1. Faça a seguinte requisição usando o verbo POST:
+	* Faça a seguinte requisição usando o verbo POST:
   	
 ```		https://toggle-manager-api.herokuapp.com/api/users?access_token=42da6a6c-f992-4bf5-8698-9b584dd35918
   	
@@ -100,11 +100,11 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 	 			}
 ```
 
-		- Nosso usuário de sistema está criado, agora podemos obter o token referente ao mesmo, fazendo o mesmo processo do passo 1.
+* Nosso usuário de sistema está criado, agora podemos obter o token referente ao mesmo, fazendo o mesmo processo do passo 1.
 
-3. Para criação, edição, remoção e consultas, o usuário deverá ter o perfil `ROLE_ADMIN`. Sendo assim nosso usuário de sistema não tem permissão para tais requisições. Para usuários com o perfil `ROLE_USER`, somente será permitido a consulta especifica de usuário autenticado, através de seu identificador unico. Vamos tentar criar um usuário de sistema.
+3. Para criação, edição, remoção e consultas, o usuário deverá ter o perfil `ROLE_ADMIN`. Sendo assim nosso usuário de sistema não tem permissão para tais requisições. Para usuários com o perfil `ROLE_USER`, somente será permitido a consulta especifica de usuário autenticado, através de seu identificador único. Vamos tentar criar um usuário de sistema.
 	
-	1. Para obter o token corresponsente ao novo usuário de sistema, faça a seguinte requisição usando o verbo POST:
+	* Para obter o token corresponsente ao novo usuário de sistema, faça a seguinte requisição usando o verbo POST:
 
 ```		https://toggle-manager-api.herokuapp.com/api/oauth/token?grant_type=password&username=apiA&password=secret
 	
@@ -115,7 +115,8 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 		    "scope": "read write trust"
 		}
 ```
-	2. Para criarmos um novo usuário, faça a seguinte requisição usando o verbo POST:
+
+	* Para criarmos um novo usuário, faça a seguinte requisição usando o verbo POST:
 	
 ```		https://toggle-manager-api.herokuapp.com/api/users?access_token=ef34be86-d6d7-49c3-b062-8535c3412817
 	
@@ -131,16 +132,16 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 	 Response body: Access is denied 
 ```
 
-	- Obtemos o `Status 403 Forbidden` para nosso usuário de sistema. O mesmo ocorreu porque nosso usuário sendo `ROLE_USER`, não tem permissão para criação de outro usuário de sistema. O mesmo acontece para remoções, edições e consultas que não são respectivas ao usuário de sistema autenticado.
+* Obtemos o `Status 403 Forbidden` para nosso usuário de sistema. O mesmo ocorreu porque nosso usuário sendo `ROLE_USER`, não tem permissão para criação de outro usuário de sistema. O mesmo acontece para remoções, edições e consultas que não são respectivas ao usuário de sistema autenticado.
 	 
-	3. Vejamos outro exemplo, vamos tentar fazer uma consulta de todos usuários de sistema. Para tal, faça a seguinte requisição usando o verbo GET:
+	* Vejamos outro exemplo, vamos tentar fazer uma consulta de todos usuários de sistema. Para tal, faça a seguinte requisição usando o verbo GET:
 	
 ```		https://toggle-manager-api.herokuapp.com/api/users?access_token=1af9cef3-f2ff-4be0-bc30-f7693ca70f84
 
 		Response body: Access is denied / Status 403 Forbidden
 ```
 	  
-	- Tais restrições são aplicadas para criação, remoção, edição e consultas de Toggles, com exceção dos toggles referentes ao usuário de sistemas autenticado.
+* Tais restrições são aplicadas para criação, remoção, edição e consultas de Toggles, com exceção dos toggles referentes ao usuário de sistemas autenticado.
 	
 	  
 4. Sendo assim, vamos continuar usando o usuário `admin` para realizarmos o cadastro de alguns toggles, que associaremos ao nosso atual usuário de sistema e a outros posteriores. 
