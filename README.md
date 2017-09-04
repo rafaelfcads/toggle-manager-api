@@ -1,8 +1,8 @@
 # Toggle Management API
 
-Esta API tem por objetivo expor serviços para o gerenciamento em tempo real e dinamico da disponibilidade de serviços em uma plataforma. Através dos serviços disponiveis, é possivel criar usuário de sistema, onde deverá ser atribuido o API name, sua respectiva versão e os seus toggles, caso o mesmo deva ser criado ou toggles já existentes devão ser associados a ele. Após criado, será possivel realizar a sua edição, remoção e formas de consulta-lo. Para criação, edição, remoção e consultas, com exceção de consulta por Id, deverá ser realizada com um usuário de sistema com perfil ADMIN, para consulta por Id, o mesmo poderá ser realizado com perfil USER;
-Através dos serviços disponiveis, será possivel ainda, criar toggles que poderão ser associados aos usuários de sistemas desejado. Para criação de um toggle, deverá ser atribuido o seu name e seu valor(TRUE ou FALSE). Um toggles pode ser associada a uma ou mais APIs, um toggles com um respectivo nome, pode ser criado com valores distintos para diferentes APIs(Ex: Toggle Name: is ButtonRed, Valor=TRUE associado as APIs A, B e C, e Toggle Name: isButtonRed, Valor=FALSE para as APIs D e E). O toggle poderá ser visto pela API, caso o mesmo esteja associado a ela. Para que uma determinada API tenha acesso aos seus toggles, a API deverá fornecer seus dados de autenticação, sendo seu nome e versão. Para criação, edição, remoção e consultas, com exceção de consulta por usuário de sistema, onde trará apenas os toggles referentes aquela API, deverá ser realizada com um usuário de sistema com perfil ADMIN, para consulta por usuário de sistema, o mesmo poderá ser realizado com perfil USER;
-A API Toggle Management API fornece o recurso de notificação, quando um toggle é alterado. Para a utilização do mesmo, a API consumidora, deverá se subscrever ao Tópico que representa tal toggle. 
+Esta API tem por objetivo expor serviços para o gerenciamento em tempo real e dinâmico da disponibilidade de serviços em uma plataforma. Através dos serviços disponiveis, é possivel criar usuário de sistema, onde deverá ser atribuido o API name, sua respectiva versão e os seus toggles. O usuário de sistema pode ser criado com seus respectivos toggles, basta associar a ele. Após criado, será possivel realizar a sua consulta, em suas diversas formas, edição e remoção. Para criação, edição, remoção e consultas, com exceção de consulta pelo identificador único, a requisição deverá ser realizada com um usuário de sistema com perfil ADMIN. Para consulta pelo identificador único, o mesmo poderá ser realizado com perfil USER;
+Através dos serviços disponiveis, será possivel ainda, criar toggles que poderão ser associados posteriormente aos usuários de sistemas desejado. Para criação de um toggle, deverá ser atribuido o seu name e seu valor(TRUE ou FALSE). Um toggle pode ser associada a uma ou mais APIs, um toggle com um respectivo nome, pode ser criado com valores distintos para diferentes APIs(Ex: Toggle Name: is ButtonRed, Valor=TRUE associado as APIs A, B e C, e Toggle Name: isButtonRed, Valor=FALSE para as APIs D e E). O toggle poderá ser consultado pela API, caso o mesmo esteja associado a ela. Para que uma determinada API tenha acesso aos seus toggles, a API deverá fornecer seus dados de autenticação, sendo seu nome e versão. Para criação, edição, remoção e consultas, com exceção de consulta por usuário de sistema, onde trará apenas os toggles referentes aquela API, deverá ser realizada com um usuário de sistema com perfil ADMIN, para consulta por usuário de sistema, o mesmo poderá ser realizado com perfil USER;
+A Toggle Management API fornece o recurso de notificação, quando um toggle é alterado. Para a utilização do mesmo, a API consumidora deverá se subscrever ao tópico que representa tal toggle. 
 Salientamos que uma API somente terá acesso aos serviços, caso a mesma tenha um usuário de sistema, para que possa se autenticar e consumir os serviços respeitando seu perfil de acesso.
 
 
@@ -15,24 +15,24 @@ API Toggle Management pode ser clonada em [GITHIB](https://github.com/rafaelfcad
 
 ## Features
 
-* Criação, Edição, Remoção e consultas para usuário de sistema,
-* Criação, Edição, Remoção e consultas para Toggles representativos quanto a disponibilidade da API,
-* Associação de um Toggle para um ou mais APIs,
-* Associação de um Toggle XPTO para um ou mais APIs com um de terminado valor e associar um Toggle com o mesmo nome porem com outro valor para outras APIs,
-* Uso de um Toggle, somente pelo API cujo o Toggle está associado,
-* Acesso ao Toggle via autenticação(nome e verão da API) e autorização,
-* Subscrição nas alterações de Toggles
+* Criação, Edição, Remoção e Consultas para usuário de sistema
+* Criação, Edição, Remoção e Consultas para toggles representativos quanto a disponibilidade da API
+* Associação de um toggle para um ou mais APIs
+* Associação de um toggle XPTO para um ou mais APIs com um de terminado valor e associar um Toggle com o mesmo nome(XPTO) porem com outro valor para outras APIs
+* Uso de um toggle somente pelo API cujo o Toggle está associado,
+* Acesso ao toggle via autenticação(nome e verão da API) e autorização,
+* Notificações nas alterações dos toggles
 
 ## Tecnologias
 
-* Java 8,
-* Spring Boot,
-* Spring Data Rest,
-* Spring Data MongDB,
-* Spring Security,
-* Spring Security OAuth2,
-* Spring Kafka,
-* Lombok,
+* Java 8
+* Spring Boot
+* Spring Data Rest
+* Spring Data MongDB
+* Spring Security
+* Spring Security OAuth2
+* Spring Kafka
+* Lombok
 * Spring Test
 
 ## API Toggle Management em uso
@@ -57,7 +57,7 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
  
 1. Com o usuário `admin`, você deve obter um token de acesso
  
-	1. Faça a seguinte requisição usando o verbo POST
+	* Faça a seguinte requisição usando o verbo POST
  
 ```		https://toggle-manager-api.herokuapp.com/api/oauth/token?grant_type=password&username=admin&password=admin
  
@@ -69,7 +69,7 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 				    "scope": "read write trust"
 				}
  ```
-		- Com o token em mãos, você terá o tempo do `expires_in` para fazer a utilização do `access_token: 42da6a6c-f992-4bf5-8698-9b584dd35918`
+	* Com o token em mãos, você terá o tempo do `expires_in` para fazer a utilização do `access_token: 42da6a6c-f992-4bf5-8698-9b584dd35918`
   		
   
 2. Com o token do usuário `admin` em mãos e em tempo válido, podemos criar então um novo usuário de sistema, que represente nossa API consumidora 
