@@ -106,7 +106,9 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 	
 	* Para obter o token corresponsente ao novo usuário de sistema, faça a seguinte requisição usando o verbo POST:
 
-```		https://toggle-manager-api.herokuapp.com/api/oauth/token?grant_type=password&username=apiA&password=secret
+```		
+
+	https://toggle-manager-api.herokuapp.com/api/oauth/token?grant_type=password&username=apiA&password=secret
 	
 		Response body: {
 		    "access_token": "ef34be86-d6d7-49c3-b062-8535c3412817",
