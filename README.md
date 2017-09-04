@@ -69,7 +69,7 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 				    "scope": "read write trust"
 				}
  ```
-	* Com o token em mãos, você terá o tempo do `expires_in` para fazer a utilização do `access_token: 42da6a6c-f992-4bf5-8698-9b584dd35918`
+* Com o token em mãos, você terá o tempo do `expires_in` para fazer a utilização do `access_token: 42da6a6c-f992-4bf5-8698-9b584dd35918`
   		
   
 2. Com o token do usuário `admin` em mãos e em tempo válido, podemos criar então um novo usuário de sistema, que represente nossa API consumidora 
