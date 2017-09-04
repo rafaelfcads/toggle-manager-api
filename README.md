@@ -121,7 +121,8 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 ```
 
 
-	* Para criarmos um novo usuário, faça a seguinte requisição usando o verbo POST:
+* Para criarmos um novo usuário, faça a seguinte requisição usando o verbo POST:
+
 	
 ```		
 
@@ -145,9 +146,13 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 	 
 	* Vejamos outro exemplo, vamos tentar fazer uma consulta de todos usuários de sistema. Para tal, faça a seguinte requisição usando o verbo GET:
 	
-```		https://toggle-manager-api.herokuapp.com/api/users?access_token=1af9cef3-f2ff-4be0-bc30-f7693ca70f84
+```		
 
-		Response body: Access is denied / Status 403 Forbidden
+	https://toggle-manager-api.herokuapp.com/api/users?access_token=1af9cef3-f2ff-4be0-bc30-f7693ca70f84
+
+	Response body: Access is denied / Status 403 Forbidden
+	
+	
 ```
 	  
 * Tais restrições são aplicadas para criação, remoção, edição e consultas de Toggles, com exceção dos toggles referentes ao usuário de sistemas autenticado.
@@ -155,50 +160,69 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 	  
 4. Sendo assim, vamos continuar usando o usuário `admin` para realizarmos o cadastro de alguns toggles, que associaremos ao nosso atual usuário de sistema e a outros posteriores. 
 	  
-	1. Com um token válido do usuário de sistemas `admin`, vamos fazer uma requisição usando o verbo POST para criar uma Toggle:
+	* Com um token válido do usuário de sistemas `admin`, vamos fazer uma requisição usando o verbo POST para criar uma Toggle:
 	  
-```		https://toggle-manager-api.herokuapp.com/api/toggles?access_token=42da6a6c-f992-4bf5-8698-9b584dd35918
+```		
+
+	https://toggle-manager-api.herokuapp.com/api/toggles?access_token=42da6a6c-f992-4bf5-8698-9b584dd35918
 	  
-	  	Request body:{
-		            "name": "isButtonBlue",
-		            "value": true
-				}
- 				
- 	 	Response body: {
-				    "id": "59ad7eff95f88f0004e2361c",
-				    "name": "isButtonBlue",
-				    "value": true
-				}
+  	Request body:{
+	            "name": "isButtonBlue",
+	            "value": true
+			}
+			
+ 	Response body: {
+			    "id": "59ad7eff95f88f0004e2361c",
+			    "name": "isButtonBlue",
+			    "value": true
+			}
+			
+			
 ```
-	2. Agora vamos cria mais dois Toggles, o Yellow e o Green. Repita as requisições usando o verbo POST, mas agora passando os argumentos que represente nossos novos Toggles. Faça a seguinte requisição POST para a criação do Toggle Yellow. Observe que o mesmo está com o seu valor false:
+
+
+	* Agora vamos cria mais dois Toggles, o Yellow e o Green. Repita as requisições usando o verbo POST, mas agora passando os argumentos que represente nossos novos Toggles. Faça a seguinte requisição POST para a criação do Toggle Yellow. Observe que o mesmo está com o seu valor false:
 	
-```		https://toggle-manager-api.herokuapp.com/api/toggles?access_token=42da6a6c-f992-4bf5-8698-9b584dd35918
+	
+	
+```		
+
+	https://toggle-manager-api.herokuapp.com/api/toggles?access_token=42da6a6c-f992-4bf5-8698-9b584dd35918
 	  
-	  	Request body:{
-	                "name": "isButtonBlue",
-	                "value": false
- 				}
- 		
- 		Response body: {
-				    "id": "59ad815b95f88f0004e2361d",
-				    "name": "isButtonYellow",
-				    "value": false
-				}		
-```
-	3. Faça a seguinte requisição POST para a criação do Toggle Green:
+  	Request body:{
+                "name": "isButtonBlue",
+                "value": false
+			}
 	
-```		https://toggle-manager-api.herokuapp.com/api/toggles?access_token=42da6a6c-f992-4bf5-8698-9b584dd35918
+	Response body: {
+			    "id": "59ad815b95f88f0004e2361d",
+			    "name": "isButtonYellow",
+			    "value": false
+			}	
+			
+				
+```
+
+
+	* Faça a seguinte requisição POST para a criação do Toggle Green:
+	
+	
+```		
+
+	https://toggle-manager-api.herokuapp.com/api/toggles?access_token=42da6a6c-f992-4bf5-8698-9b584dd35918
 	 
-	 	Request body:{
-	                "name": "isButtonGreen",
-	                "value": true
- 				}
- 		
- 		Response body: {
-				    "id": "59ad822795f88f0004e2361e",
-				    "name": "isButtonGreen",
-				    "value": true
-				}
+ 	Request body:{
+                "name": "isButtonGreen",
+                "value": true
+			}
+	
+	Response body: {
+			    "id": "59ad822795f88f0004e2361e",
+			    "name": "isButtonGreen",
+			    "value": true
+			}
+			
+			
 ```
 	
 5. Agora vamos associar alguns desses novos Toggles ao nosso usuário de sistema `apiA`. 
