@@ -110,29 +110,35 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 
 	https://toggle-manager-api.herokuapp.com/api/oauth/token?grant_type=password&username=apiA&password=secret
 	
-		Response body: {
-		    "access_token": "ef34be86-d6d7-49c3-b062-8535c3412817",
-		    "token_type": "bearer",
-		    "expires_in": 863999,
-		    "scope": "read write trust"
-		}
+	Response body: {
+	    "access_token": "ef34be86-d6d7-49c3-b062-8535c3412817",
+	    "token_type": "bearer",
+	    "expires_in": 863999,
+	    "scope": "read write trust"
+	}
+		
+		
 ```
 
 
-* Para criarmos um novo usuário, faça a seguinte requisição usando o verbo POST:
+	* Para criarmos um novo usuário, faça a seguinte requisição usando o verbo POST:
 	
-```		https://toggle-manager-api.herokuapp.com/api/users?access_token=ef34be86-d6d7-49c3-b062-8535c3412817
+```		
+
+	https://toggle-manager-api.herokuapp.com/api/users?access_token=ef34be86-d6d7-49c3-b062-8535c3412817
 	
-		Request body: {
-            "userName": "apiB",
-            "password": "secret",
-            "version": "v.1.0.0",
-            "roles": [
-                "ROLE_USER"
-            ]
-		}
+	Request body: {
+        "userName": "apiB",
+        "password": "secret",
+        "version": "v.1.0.0",
+        "roles": [
+            "ROLE_USER"
+        ]
+	}
 	
 	 Response body: Access is denied 
+	 
+	 
 ```
 
 * Obtemos o `Status 403 Forbidden` para nosso usuário de sistema. O mesmo ocorreu porque nosso usuário sendo `ROLE_USER`, não tem permissão para criação de outro usuário de sistema. O mesmo acontece para remoções, edições e consultas que não são respectivas ao usuário de sistema autenticado.
