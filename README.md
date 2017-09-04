@@ -181,7 +181,7 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 ```
 
 
-	* Agora vamos cria mais dois Toggles, o Yellow e o Green. Repita as requisições usando o verbo POST, mas agora passando os argumentos que represente nossos novos Toggles. Faça a seguinte requisição POST para a criação do Toggle Yellow. Observe que o mesmo está com o seu valor false:
+* Agora vamos cria mais dois Toggles, o Yellow e o Green. Repita as requisições usando o verbo POST, mas agora passando os argumentos que represente nossos novos Toggles. Faça a seguinte requisição POST para a criação do Toggle Yellow. Observe que o mesmo está com o seu valor false:
 	
 	
 	
@@ -204,7 +204,7 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 ```
 
 
-	* Faça a seguinte requisição POST para a criação do Toggle Green:
+* Faça a seguinte requisição POST para a criação do Toggle Green:
 	
 	
 ```		
@@ -227,284 +227,324 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 	
 5. Agora vamos associar alguns desses novos Toggles ao nosso usuário de sistema `apiA`. 
 
-	1. Faça a seguinte requisição usando o verbo PUT:
+	* Faça a seguinte requisição usando o verbo PUT:
 	
-```		https://toggle-manager-api.herokuapp.com/api/users/59abcf98734d1d25a0f5dfba?access_token=42da6a6c-f992-4bf5-8698-9b584dd35918
+```		
+
+	https://toggle-manager-api.herokuapp.com/api/users/59abcf98734d1d25a0f5dfba?access_token=42da6a6c-f992-4bf5-8698-9b584dd35918
 	
-		Request body: {
-				    "id": "59ad767595f88f0004e2361a",
-				    "userName": "apiA",
-				    "password": "secret",
-				    "version": "v.1.0.0",
-				    "roles": [
-				        "ROLE_USER"
-				    	],
-					"toggles":[
-					    {
-						    "id": "59ad7eff95f88f0004e2361c",
-						    "name": "isButtonBlue",
-						    "value": true
-						},
-					    {
-						    "id": "59ad815b95f88f0004e2361d",
-						    "name": "isButtonYellow",
-						    "value": false
-						}
-					]
-				}
+	Request body: {
+			    "id": "59ad767595f88f0004e2361a",
+			    "userName": "apiA",
+			    "password": "secret",
+			    "version": "v.1.0.0",
+			    "roles": [
+			        "ROLE_USER"
+			    	],
+				"toggles":[
+				    {
+					    "id": "59ad7eff95f88f0004e2361c",
+					    "name": "isButtonBlue",
+					    "value": true
+					},
+				    {
+					    "id": "59ad815b95f88f0004e2361d",
+					    "name": "isButtonYellow",
+					    "value": false
+					}
+				]
+			}
 	
 		Response body: Status 200 OK
+		
+		
 ```
 
 6. Agora vamos fazer uma consulta para obtermos nosso usuário de sistema e seus respectivos Toggles. Para isso, garanta um token válido para nosso usuário de sistema. 
 	
-	1. Faça a seguinte requisição usando o verbo GET:
+	* Faça a seguinte requisição usando o verbo GET:
 	
-```		https://toggle-manager-api.herokuapp.com/api/users/59ad767595f88f0004e2361a?access_token=ef34be86-d6d7-49c3-b062-8535c3412817
+```		
+
+	https://toggle-manager-api.herokuapp.com/api/users/59ad767595f88f0004e2361a?access_token=ef34be86-d6d7-49c3-b062-8535c3412817
 	
-		Response body: {
-		    "id": "59ad767595f88f0004e2361a",
-		    "userName": "apiA",
-		    "password": "secret",
-		    "version": "v.1.0.0",
-		    "roles": [
-		        "ROLE_USER"
-		    ],
-		    "toggles": [
-		        {
-		            "id": "59ad7eff95f88f0004e2361c",
-		            "name": "isButtonBlue",
-		            "value": true
-		        },
-		        {
-		            "id": "59ad815b95f88f0004e2361d",
-		            "name": "isButtonYellow",
-		            "value": false
-		        }
-		    ]
-		}
+	Response body: {
+	    "id": "59ad767595f88f0004e2361a",
+	    "userName": "apiA",
+	    "password": "secret",
+	    "version": "v.1.0.0",
+	    "roles": [
+	        "ROLE_USER"
+	    ],
+	    "toggles": [
+	        {
+	            "id": "59ad7eff95f88f0004e2361c",
+	            "name": "isButtonBlue",
+	            "value": true
+	        },
+	        {
+	            "id": "59ad815b95f88f0004e2361d",
+	            "name": "isButtonYellow",
+	            "value": false
+	        }
+	    ]
+	}
+	
+	
 ```
 
 7. É possivel compartilhar um toggle com outra API. Vamos criar um novo usuário de sistema, e associar o Toggle Green a ele
 	
-	1. Com um token válido de um usuário de sistema `ROLE_ADMIN`, faça a seguinte requisição usando o verbo POST:
+	* Com um token válido de um usuário de sistema `ROLE_ADMIN`, faça a seguinte requisição usando o verbo POST:
 	
-```		https://toggle-manager-api.herokuapp.com/api/users?access_token=42da6a6c-f992-4bf5-8698-9b584dd35918
+```		
+
+	https://toggle-manager-api.herokuapp.com/api/users?access_token=42da6a6c-f992-4bf5-8698-9b584dd35918
   	
-  		Request body:  { 
-	  					"id": "59ad794595f88f0004e2361b",
-				        "userName": "apiB",
-				        "password": "secret",
-				        "version": "v.1.0.0",
-				        "roles": [
-				            "ROLE_USER"
-				        ]
-			        }
-	 		
-	 	Response body: {
-				    "id": "59ad794595f88f0004e2361b",
+	Request body:  { 
+  					"id": "59ad794595f88f0004e2361b",
 			        "userName": "apiB",
 			        "password": "secret",
 			        "version": "v.1.0.0",
 			        "roles": [
 			            "ROLE_USER"
-			        ],
-				    "toggles": null
-				}
+			        ]
+		        }
+ 		
+ 	Response body: {
+			    "id": "59ad794595f88f0004e2361b",
+		        "userName": "apiB",
+		        "password": "secret",
+		        "version": "v.1.0.0",
+		        "roles": [
+		            "ROLE_USER"
+		        ],
+			    "toggles": null
+			}
+			
+			
 ```
 
 8. Agora vamos associar o Toggle Green ao novo usuário de sistema apiB
 
-	1. Faça a seguinte requisição usando o verbo PUT:
+	* Faça a seguinte requisição usando o verbo PUT:
 	
-```		https://toggle-manager-api.herokuapp.com/api/users/59ad794595f88f0004e2361b?access_token=42da6a6c-f992-4bf5-8698-9b584dd35918
+```		
+
+	https://toggle-manager-api.herokuapp.com/api/users/59ad794595f88f0004e2361b?access_token=42da6a6c-f992-4bf5-8698-9b584dd35918
 	
-		Request body: {
-				    "id": "59ad794595f88f0004e2361b",
-				    "userName": "apiB",
-				    "password": "secret",
-				    "version": "v.1.0.0",
-				    "roles": [
-				        "ROLE_USER"
-				    	],
-					"toggles":[
-					   {
-				    		"id": "59ad822795f88f0004e2361e"
-						}
-					]
-				}
+	Request body: {
+			    "id": "59ad794595f88f0004e2361b",
+			    "userName": "apiB",
+			    "password": "secret",
+			    "version": "v.1.0.0",
+			    "roles": [
+			        "ROLE_USER"
+			    	],
+				"toggles":[
+				   {
+			    		"id": "59ad822795f88f0004e2361e"
+					}
+				]
+			}
 	
 	Response body: Status 200 OK
+	
+	
 ```
 
 9. Vamos consultar nosso novo usuário de sistema. 
 	
-	1. Faça a seguinte requisição usando o verbo GET:
+	* Faça a seguinte requisição usando o verbo GET:
 	
-```		https://toggle-manager-api.herokuapp.com/api/users/59ad794595f88f0004e2361b?access_token=1af9cef3-f2ff-4be0-bc30-f7693ca70f84
+```		
+
+	https://toggle-manager-api.herokuapp.com/api/users/59ad794595f88f0004e2361b?access_token=1af9cef3-f2ff-4be0-bc30-f7693ca70f84
 	
-		Request body:{
-				    "id": "59ad794595f88f0004e2361b",
-				    "userName": "apiB",
-				    "password": "secret",
-				    "version": "v.1.0.0",
-				    "roles": [
-				        "ROLE_USER"
-				    ],
-				    "toggles": [
-				        {
-				            "id": "59ad822795f88f0004e2361e",
-				            "name": "isButtonGreen",
-				            "value": true
-				        }
-				    ]
-				}
+	Request body:{
+			    "id": "59ad794595f88f0004e2361b",
+			    "userName": "apiB",
+			    "password": "secret",
+			    "version": "v.1.0.0",
+			    "roles": [
+			        "ROLE_USER"
+			    ],
+			    "toggles": [
+			        {
+			            "id": "59ad822795f88f0004e2361e",
+			            "name": "isButtonGreen",
+			            "value": true
+			        }
+			    ]
+			}
+			
+			
 ```
 
 10. Agora vamos compartilhar o Toggle Yellow com a ApiB, assim ambos compartilham seu valor
 
-	1. Faça a seguinte requisição usando o verbo PUT:
+	* Faça a seguinte requisição usando o verbo PUT:
 	
-```		https://toggle-manager-api.herokuapp.com/api/users/59ad794595f88f0004e2361b?access_token=42da6a6c-f992-4bf5-8698-9b584dd35918
+```		
+
+	https://toggle-manager-api.herokuapp.com/api/users/59ad794595f88f0004e2361b?access_token=42da6a6c-f992-4bf5-8698-9b584dd35918
 	
-		Request body: {
-				    "id": "59ad794595f88f0004e2361b",
-				    "userName": "apiB",
-				    "password": "secret",
-				    "version": "v.1.0.0",
-				    "roles": [
-				        "ROLE_USER"
-				    	],
-					"toggles":[
-					   {
-				    		"id": "59ad822795f88f0004e2361e"
-						},
-						{
-				            "id": "59ad815b95f88f0004e2361d",
-				            "name": "isButtonYellow",
-				            "value": false
-				        }
-					]
-				}
+	Request body: {
+			    "id": "59ad794595f88f0004e2361b",
+			    "userName": "apiB",
+			    "password": "secret",
+			    "version": "v.1.0.0",
+			    "roles": [
+			        "ROLE_USER"
+			    	],
+				"toggles":[
+				   {
+			    		"id": "59ad822795f88f0004e2361e"
+					},
+					{
+			            "id": "59ad815b95f88f0004e2361d",
+			            "name": "isButtonYellow",
+			            "value": false
+			        }
+				]
+			}
 				
 	Response Body: Status 200 OK
+	
+	
 ```
 
 10. Agora podemos obter os Toggles de nosso novo usuário de sistema apiB e validar se o Toggle Yellow foi compartlhado
 
-	1. Faça a seguinte requisição usando o verbo GET:
+	* Faça a seguinte requisição usando o verbo GET:
 	
-```		https://toggle-manager-api.herokuapp.com/api/users/59ad794595f88f0004e2361b?access_token=1af9cef3-f2ff-4be0-bc30-f7693ca70f84
+```		
+
+	https://toggle-manager-api.herokuapp.com/api/users/59ad794595f88f0004e2361b?access_token=1af9cef3-f2ff-4be0-bc30-f7693ca70f84
 	
-		Response body: {
-		    "id": "59ad794595f88f0004e2361b",
-		    "userName": "apiB",
-		    "password": "secret",
-		    "version": "v.1.0.0",
-		    "roles": [
-		        "ROLE_USER"
-		    ],
-		    "toggles": [
-		        {
-		            "id": "59ad822795f88f0004e2361e",
-		            "name": "isButtonGreen",
-		            "value": true
-		        },
-		        {
-		            "id": "59ad815b95f88f0004e2361d",
-		            "name": "isButtonYellow",
-		            "value": false
-		        }
-		    ]
-		}
+	Response body: {
+	    "id": "59ad794595f88f0004e2361b",
+	    "userName": "apiB",
+	    "password": "secret",
+	    "version": "v.1.0.0",
+	    "roles": [
+	        "ROLE_USER"
+	    ],
+	    "toggles": [
+	        {
+	            "id": "59ad822795f88f0004e2361e",
+	            "name": "isButtonGreen",
+	            "value": true
+	        },
+	        {
+	            "id": "59ad815b95f88f0004e2361d",
+	            "name": "isButtonYellow",
+	            "value": false
+	        }
+	    ]
+	}
+	
+	
 ```
 
-	- Podemos observar que o Toggle de `id: 59ad815b95f88f0004e2361d` e `name: isButtonYellow` se encontra associado aos usuários de sistemas `apiA` e `apiB`. Quando houver uma alteração no valor do Toggle, o mesmo será compartilhado a todos os usuários de sistemas que tem tal toggle associado
+* Podemos observar que o Toggle de `id: 59ad815b95f88f0004e2361d` e `name: isButtonYellow` se encontra associado aos usuários de sistemas `apiA` e `apiB`. Quando houver uma alteração no valor do Toggle, o mesmo será compartilhado a todos os usuários de sistemas que tem tal toggle associado
 	
 11. Para finalizar, vamos criar um novo Toggle com `name: isButtonGreen`, porem, com seu valor false, pois para o usuário de sistema apiA, o valor do Toggle `name : isButtonGreen` deverár ser `false`
 
-	1. Faça a seguinte requisição usando o verbo POST:
+	* Faça a seguinte requisição usando o verbo POST:
 	
-```		https://toggle-manager-api.herokuapp.com/api/toggles?access_token=42da6a6c-f992-4bf5-8698-9b584dd35918
+```		
 
-		Request body: {
-				    "name": "isButtonGreen",
-				    "value": false
-				}
-	
-		Response body:  {
-				    "id": "59ad915a95f88f0004e2361f",
-				    "name": "isButtonGreen",
-				    "value": false
-				}
+	https://toggle-manager-api.herokuapp.com/api/toggles?access_token=42da6a6c-f992-4bf5-8698-9b584dd35918
+
+	Request body: {
+			    "name": "isButtonGreen",
+			    "value": false
+			}
+
+	Response body:  {
+			    "id": "59ad915a95f88f0004e2361f",
+			    "name": "isButtonGreen",
+			    "value": false
+			}
+			
+			
 ```
 
 12. Agora vamos associar o Toggle `name: isButtonGreen` com `value: false` em nosso usuário de sistema apiA
 
-	1. Faça a seguinte requisição usando o verbo PUT:
+	* Faça a seguinte requisição usando o verbo PUT:
 	
-```		https://toggle-manager-api.herokuapp.com/api/users/59ad767595f88f0004e2361a?access_token=42da6a6c-f992-4bf5-8698-9b584dd35918
+```		
+
+	https://toggle-manager-api.herokuapp.com/api/users/59ad767595f88f0004e2361a?access_token=42da6a6c-f992-4bf5-8698-9b584dd35918
 	
-		Request body: {
-			        "id": "59ad767595f88f0004e2361a",
-			        "userName": "apiA",
-			        "password": "secret",
-			        "version": "v.1.0.0",
-			        "roles": [
-			            "ROLE_USER"
-			        ],
-			        "toggles": [
-			            {
-			                "id": "59ad7eff95f88f0004e2361c",
-			                "name": "isButtonBlue",
-			                "value": true
-			            },
-			            {
-			                "id": "59ad815b95f88f0004e2361d",
-			                "name": "isButtonYellow",
-			                "value": false
-			            },
-			            {
-			            	"id": "59ad915a95f88f0004e2361f"
-			            }
-			        ]
-			    }
+	Request body: {
+		        "id": "59ad767595f88f0004e2361a",
+		        "userName": "apiA",
+		        "password": "secret",
+		        "version": "v.1.0.0",
+		        "roles": [
+		            "ROLE_USER"
+		        ],
+		        "toggles": [
+		            {
+		                "id": "59ad7eff95f88f0004e2361c",
+		                "name": "isButtonBlue",
+		                "value": true
+		            },
+		            {
+		                "id": "59ad815b95f88f0004e2361d",
+		                "name": "isButtonYellow",
+		                "value": false
+		            },
+		            {
+		            	"id": "59ad915a95f88f0004e2361f"
+		            }
+		        ]
+		    }
 			    
 	Response Body: Response Body: Status 200 OK
+	
+	
 ```
 
 13. Agora vamos consultar e garantir que temos o `Toggle green`, com `valor false para a apiA` e `valor true para a apiB`
 	
-	1. Faça a seguinte requisição usando o verbo GET:
+	* Faça a seguinte requisição usando o verbo GET:
 	
-```		https://toggle-manager-api.herokuapp.com/api/users/59ad767595f88f0004e2361a?access_token=ef34be86-d6d7-49c3-b062-8535c3412817
+```		
+
+	https://toggle-manager-api.herokuapp.com/api/users/59ad767595f88f0004e2361a?access_token=ef34be86-d6d7-49c3-b062-8535c3412817
 	
-		Response body: {
-				    "id": "59ad767595f88f0004e2361a",
-				    "userName": "apiA",
-				    "password": "secret",
-				    "version": "v.1.0.0",
-				    "roles": [
-				        "ROLE_USER"
-				    ],
-				    "toggles": [
-				        {
-				            "id": "59ad7eff95f88f0004e2361c",
-				            "name": "isButtonBlue",
-				            "value": true
-				        },
-				        {
-				            "id": "59ad815b95f88f0004e2361d",
-				            "name": "isButtonYellow",
-				            "value": false
-				        },
-				        {
-				            "id": "59ad915a95f88f0004e2361f",
-				            "name": "isButtonGreen",
-				            "value": false
-				        }
-				    ]
-				}
+	Response body: {
+			    "id": "59ad767595f88f0004e2361a",
+			    "userName": "apiA",
+			    "password": "secret",
+			    "version": "v.1.0.0",
+			    "roles": [
+			        "ROLE_USER"
+			    ],
+			    "toggles": [
+			        {
+			            "id": "59ad7eff95f88f0004e2361c",
+			            "name": "isButtonBlue",
+			            "value": true
+			        },
+			        {
+			            "id": "59ad815b95f88f0004e2361d",
+			            "name": "isButtonYellow",
+			            "value": false
+			        },
+			        {
+			            "id": "59ad915a95f88f0004e2361f",
+			            "name": "isButtonGreen",
+			            "value": false
+			        }
+			    ]
+			}
+			
+			
 ```
 
 ## Observações finais:
