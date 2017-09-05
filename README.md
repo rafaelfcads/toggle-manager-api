@@ -37,6 +37,129 @@ API Toggle Management pode ser clonada em [GITHUB](https://github.com/rafaelfcad
 * Lombok
 * Spring Test
 
+## EndPoints
+
+* Token
+
+```
+/api/oauth/token?grant_type=password&username=username&password=password
+```
+* Usuário
+
+Todos os usuários
+
+```
+GET
+/api/users?access_token=token
+```
+
+* Usuário por identificador único
+
+```
+GET
+/api/users/userId?access_token=token
+```
+
+* Usuário por nome
+
+```
+GET
+/api/users/search/findByName?name=name&access_token=token
+```
+
+* Criação de usuário
+
+```
+POST
+/api/users?access_token=token
+
+body : {
+	userName: userName,
+	password: password,
+	version: version,
+	roles: [],
+	toggles: []
+}
+```
+
+* Alteração de usuário
+
+```
+PUT
+/api/users/userId?access_token=token
+
+body : {
+	    id: id,
+	    userName: userName,
+	    password: password,
+	    version: version,
+	    roles: [],
+	    toggles: []
+	}
+```
+
+* Deleção de usuário
+
+```
+DELETE
+/api/users/userId?access_token=token
+```
+
+* Toggle
+
+Todos os toggles
+
+```
+GET
+/api/toggles?access_token=token
+```
+
+* Toggle por identificador único
+
+```
+GET
+/api/toggles/toggleId?access_token=token
+```
+
+* Toggle por nome
+
+```
+GET
+/api/toggles/search/findByName?name=name&access_token=token
+```
+
+* Criação de toggle
+
+```
+POST
+/api/toggles?access_token=token
+
+body : {
+	name: name,
+	value: value
+}
+```
+
+* Alteração de toggle
+
+```
+PUT
+/api/toggles/toggleId?access_token=token
+
+body : {
+	    id: id,
+	    name: name,
+	    value: value
+	}
+```
+
+* Deleção de toggle
+
+```
+DELETE
+/api/toggles/toggleId?access_token=token
+```
+
 ## API Toggle Management em uso
 
 > Utilize a extensão do Chrome POSTMAN para a realização das requisições
