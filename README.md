@@ -12,7 +12,7 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 
 Para consumir Toggle Management API, você pode utilizar a API [Consumer Toggle Manager API](https://consumer-toggle-manager-api.herokuapp.com/)
 
-API Toggle Management pode ser clonada em [GITHIB](https://github.com/rafaelfcads/toggle-manager-api.git)
+API Toggle Management pode ser clonada em [GITHUB](https://github.com/rafaelfcads/toggle-manager-api.git)
 
 
 ## Features
@@ -592,7 +592,7 @@ Para consumir Toggle Management API, você pode utilizar a API [Consumer Toggle 
 
 ## Observações finais:
 	
-### Vimos que é possivel criar, alterar, remover e consultar um usuário de sistema, sendo necessário a autenticação e autorização para a realização dos mesmos. É possivel criar, alterar, remover e consultar um toggle, respeitando os perfis "ROLE_USER" e "ROLE_ADMIN" assim como nos serviços expostos para usuáro de sistema. Um Toggle pode ser usado por um ou mais Apis. Uma Toggle pode ter valor distinto entre APIs. Um Toggle pode ser usado por um serviço e outro pode não te-lo configurado para uso. Para acessar os Toggle a API deve se autenticar. Na proxima sessão, onde baixaremos a aplicação do GIT, veremos como trabalhar com as notificações, caso um Toggle seja alterado. E confirmamos a autorização para acesso aos serviços da API.
+Vimos que é possivel criar, alterar, remover e consultar um usuário de sistema, sendo necessário a autenticação e autorização para a realização dos mesmos. É possivel criar, alterar, remover e consultar um toggle, respeitando os perfis "ROLE_USER" e "ROLE_ADMIN" assim como nos serviços expostos para usuáro de sistema. Um Toggle pode ser usado por um ou mais Apis. Uma Toggle pode ter valor distinto entre APIs. Um Toggle pode ser usado por um serviço e outro pode não te-lo configurado para uso. Para acessar os Toggle a API deve se autenticar. Na proxima sessão, onde baixaremos a aplicação do GIT, veremos como trabalhar com as notificações, caso um Toggle seja alterado. E confirmamos a autorização para acesso aos serviços da API.
 
 
 
