@@ -597,6 +597,63 @@ Vimos que é possivel criar, alterar, remover e consultar um usuário de sistema
 
 
 
+
+## Clonando o projeto e executando localmente
+
+1. Instalar o [Java 8](https://www.java.com/pt_BR/download/)
+
+2. Instala o [MongoDB](https://docs.mongodb.com/manual/installation/)
+
+3. Inicie o MongoDB usando o comand mongod
+
+4. Intalar o [Apache Kafka](https://kafka.apache.org/quickstart)
+
+5. Start o kafka
+	1. zkserver start
+	3. /usr/local/Cellar/kafka/0.10.1.0/bin/kafka-server-start.sh /usr/local/etc/kafka/server.properties
+
+6. Crie um tópic
+	1. kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+	
+7. Crie um consumidor para ver as notificações enviadas quando um toggle é alterado
+	1. kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning
+
+8. Faça download da IDE [eclipse](https://www.eclipse.org/downloads/download.php?file=/oomph/epp/oxygen/R/eclipse-inst-mac64.tar.gz)
+
+9. Abra o eclipse
+
+10. Acesse no menu superior do eclipse o menu Help > Eclipse Market Place
+
+11. Agora pesquise por Spring Tools
+
+12. Instale a extensão Spring Tools
+
+13. Faça o clone do [projeto](https://github.com/rafaelfcads/toggle-manager-api.git)
+
+14. No Eclipse, acesse a aba Project Explorer
+
+15. Click com o botão direito e selecione import > import
+
+16. Selecione Maven > Existing Maven Projects
+
+17. Selecione uma pasta superior a pasta criada pela a ção de clone do projeto
+
+18. Será exibido o pom do projeto clonado, selecione o mesmo
+
+19. O workspace será contruido
+
+20. Abra a classe `ToggleManagerApplication`
+
+21. Agora execute o botão `Run` do eclipse
+
+22. O servidor será started e você poderá acessar a aplicação pela url http://localhost:8080
+
+23. A aplicação poderá ser utilizado seguindo os passos de `API Toggle Management em uso` logo acima. Você deve apenas alterar a url base de `https://toggle-manager-api.herokuapp.com/api` para `http://localhost:8080/api`
+
+
+
+
+
 	
 	
 	
