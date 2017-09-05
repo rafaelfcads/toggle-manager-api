@@ -10,6 +10,8 @@ Salientamos que uma API somente terá acesso aos serviços, caso a mesma tenha u
 
 Os serviços da API podem ser consumidos em [Toggle Management API](https://toggle-manager-api.herokuapp.com/api)
 
+Para consumir Toggle Management API, você pode utilizar a API [Consumer Toggle Manager API](https://consumer-toggle-manager-api.herokuapp.com/)
+
 API Toggle Management pode ser clonada em [GITHIB](https://github.com/rafaelfcads/toggle-manager-api.git)
 
 
@@ -37,7 +39,11 @@ API Toggle Management pode ser clonada em [GITHIB](https://github.com/rafaelfcad
 
 ## API Toggle Management em uso
 
+> Utilize a extensão do Chrome POSTMAN para a realização das requisições
+
 Os serviços da API podem ser consumidos em [Toggle Management API](https://toggle-manager-api.herokuapp.com/api)
+
+Para consumir Toggle Management API, você pode utilizar a API [Consumer Toggle Manager API](https://consumer-toggle-manager-api.herokuapp.com/)
 
 ###### Para fins de teste, você poderá usar o usuário de sistema "admin", password "admin", version v1.0.0 com perfil "ADMIN"
 
@@ -55,7 +61,9 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 
 ###### Criando um usuário de sistema para uma nova API
  
-1. Com o usuário `admin`, você deve obter um token de acesso
+1. Com o usuário `admin`, você deve obter um token de acesso. 
+
+	* Configure a extensão POSTMAN para o verbo POST, adicione a url descrita abaixo e na opção Headers, adicione a Key:Authorization e Value:Basic bXktdHJ1c3RlZC1jbGllbnQ6c2VjcmV0
  
 	* Faça a seguinte requisição usando o verbo POST
  
@@ -63,46 +71,53 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
  
 		Response body: 
 				{
-					"access_token": "42da6a6c-f992-4bf5-8698-9b584dd35918",
+					"access_token": "7b66685f-fae2-4769-b242-67b803868f63",
 					"token_type": "bearer",
 				    "expires_in": 863999,
 				    "scope": "read write trust"
 				}
  ```
-* Com o token em mãos, você terá o tempo do `expires_in` para fazer a utilização do `access_token: 42da6a6c-f992-4bf5-8698-9b584dd35918`
+* Com o token em mãos, você terá o tempo do `expires_in` para fazer a utilização do `access_token: 7b66685f-fae2-4769-b242-67b803868f63`
   		
   
 2. Com o token do usuário `admin` em mãos e em tempo válido, podemos criar então um novo usuário de sistema, que represente nossa API consumidora 
-  
+ 
+	* Configure a extensão POSTMAN para o verbo POST e adicione a url descrita abaixo
+ 	
 	* Faça a seguinte requisição usando o verbo POST:
   	
-```		https://toggle-manager-api.herokuapp.com/api/users?access_token=42da6a6c-f992-4bf5-8698-9b584dd35918
+```		
+
+	https://toggle-manager-api.herokuapp.com/api/users?access_token=7b66685f-fae2-4769-b242-67b803868f63
   	
-		Request body:  
-				{
-	                "userName": "apiA",
-	                "password": "secret",
-	                "version": "v.1.0.0",
-	                "roles": [
-	                    "ROLE_USER"
-	                ]
-	 			}
-	 	Response body:
-	 			{
-	 				"id": "59ad767595f88f0004e2361a",
-				    "userName": "apiA",
-				    "password": "secret",
-				    "version": "v.1.0.0",
-				    "roles": [
-				        "ROLE_USER"
-				    ],
-				    "toggles": null
-	 			}
+	Request body:  
+			{
+                "userName": "apiA",
+                "password": "secret",
+                "version": "v.1.0.0",
+                "roles": [
+                    "ROLE_USER"
+                ]
+ 			}
+ 	Response body:
+ 			{
+			    "id": "59ade55b1be2e40004f626b4",
+			    "userName": "apiA",
+			    "password": "secret",
+			    "version": "v.1.0.0",
+			    "roles": [
+			        "ROLE_USER"
+			    ],
+			    "toggles": null
+			}
+ 			
 ```
 
-* Nosso usuário de sistema está criado, agora podemos obter o token referente ao mesmo, fazendo o mesmo processo do passo 1.
+* Nosso usuário de sistema foi criado com sucesso, agora podemos obter o token referente ao mesmo, fazendo o mesmo processo do passo 1.
 
-3. Para criação, edição, remoção e consultas, o usuário deverá ter o perfil `ROLE_ADMIN`. Sendo assim nosso usuário de sistema não tem permissão para tais requisições. Para usuários com o perfil `ROLE_USER`, somente será permitido a consulta especifica de usuário autenticado, através de seu identificador único. Vamos tentar criar um usuário de sistema.
+3. Para criação, edição, remoção e consultas, o usuário deverá ter o perfil `ROLE_ADMIN`, sendo assim, nosso usuário de sistema não tem permissão para tais requisições. Para usuários com o perfil `ROLE_USER`, somente será permitido a consulta especifica de usuário autenticado, através de seu identificador único. Vamos tentar criar um usuário de sistema.
+	
+	* Configure a extensão POSTMAN para o verbo POST e adicione a url descrita abaixo
 	
 	* Para obter o token corresponsente ao novo usuário de sistema, faça a seguinte requisição usando o verbo POST:
 
@@ -111,7 +126,7 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 	https://toggle-manager-api.herokuapp.com/api/oauth/token?grant_type=password&username=apiA&password=secret
 	
 	Response body: {
-	    "access_token": "ef34be86-d6d7-49c3-b062-8535c3412817",
+	    "access_token": "28e31630-1d9b-46ff-b941-4ccab2bc5645",
 	    "token_type": "bearer",
 	    "expires_in": 863999,
 	    "scope": "read write trust"
@@ -120,13 +135,14 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 		
 ```
 
+* Configure a extensão POSTMAN para o verbo POST e adicione a url descrita abaixo
 
 * Para criarmos um novo usuário, faça a seguinte requisição usando o verbo POST:
 
 	
 ```		
 
-	https://toggle-manager-api.herokuapp.com/api/users?access_token=ef34be86-d6d7-49c3-b062-8535c3412817
+	https://toggle-manager-api.herokuapp.com/api/users?access_token=28e31630-1d9b-46ff-b941-4ccab2bc5645
 	
 	Request body: {
         "userName": "apiB",
@@ -144,11 +160,11 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 
 * Obtemos o `Status 403 Forbidden` para nosso usuário de sistema. O mesmo ocorreu porque nosso usuário sendo `ROLE_USER`, não tem permissão para criação de outro usuário de sistema. O mesmo acontece para remoções, edições e consultas que não são respectivas ao usuário de sistema autenticado.
 	 
-	* Vejamos outro exemplo, vamos tentar fazer uma consulta de todos usuários de sistema. Para tal, faça a seguinte requisição usando o verbo GET:
+	* Vejamos outro exemplo, vamos tentar fazer uma consulta de todos usuários de sistema. Para tal, configure a extensão POSTMAN para o verbo GET e adicione a url descrita abaixo. Faça a seguinte requisição usando o verbo GET:
 	
 ```		
 
-	https://toggle-manager-api.herokuapp.com/api/users?access_token=1af9cef3-f2ff-4be0-bc30-f7693ca70f84
+	https://toggle-manager-api.herokuapp.com/api/users?access_token=28e31630-1d9b-46ff-b941-4ccab2bc5645
 
 	Response body: Access is denied / Status 403 Forbidden
 	
@@ -160,11 +176,11 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 	  
 4. Sendo assim, vamos continuar usando o usuário `admin` para realizarmos o cadastro de alguns toggles, que associaremos ao nosso atual usuário de sistema e a outros posteriores. 
 	  
-	* Com um token válido do usuário de sistemas `admin`, vamos fazer uma requisição usando o verbo POST para criar uma Toggle:
+	* Com um token válido do usuário de sistemas `admin`, vamos criar um toggle. Configure a extensão POSTMAN para o verbo POST e realize uma requisição usando o verbo POST com a url descrita abaixo:
 	  
 ```		
 
-	https://toggle-manager-api.herokuapp.com/api/toggles?access_token=42da6a6c-f992-4bf5-8698-9b584dd35918
+	https://toggle-manager-api.herokuapp.com/api/toggles?access_token=7b66685f-fae2-4769-b242-67b803868f63
 	  
   	Request body:{
 	            "name": "isButtonBlue",
@@ -172,7 +188,7 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 			}
 			
  	Response body: {
-			    "id": "59ad7eff95f88f0004e2361c",
+			    "id": "59ade77e1be2e40004f626b5",
 			    "name": "isButtonBlue",
 			    "value": true
 			}
@@ -181,21 +197,21 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 ```
 
 
-* Agora vamos cria mais dois Toggles, o Yellow e o Green. Repita as requisições usando o verbo POST, mas agora passando os argumentos que represente nossos novos Toggles. Faça a seguinte requisição POST para a criação do Toggle Yellow. Observe que o mesmo está com o seu valor false:
+* Agora vamos criar mais dois toggles, o Yellow e o Green. Repita as requisições usando o verbo POST, mas agora passando os argumentos que represente nossos novos toggles. Configure a extensão POSTMAN para o verbo POST e realize uma requisição usando o verbo POST com a url descrita abaixo, para que a criação do Toggle Yellow seja realizada com sucesso. Observe que o mesmo está com o seu valor false:
 	
 	
 	
 ```		
 
-	https://toggle-manager-api.herokuapp.com/api/toggles?access_token=42da6a6c-f992-4bf5-8698-9b584dd35918
+	https://toggle-manager-api.herokuapp.com/api/toggles?access_token=7b66685f-fae2-4769-b242-67b803868f63
 	  
   	Request body:{
-                "name": "isButtonBlue",
+                "name": "isButtonYellow",
                 "value": false
 			}
 	
 	Response body: {
-			    "id": "59ad815b95f88f0004e2361d",
+			    "id": "59ade8401be2e40004f626b6",
 			    "name": "isButtonYellow",
 			    "value": false
 			}	
@@ -204,12 +220,12 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 ```
 
 
-* Faça a seguinte requisição POST para a criação do Toggle Green:
+* Faça o mesmo procedimento para a criação do Toggle Green:
 	
 	
 ```		
 
-	https://toggle-manager-api.herokuapp.com/api/toggles?access_token=42da6a6c-f992-4bf5-8698-9b584dd35918
+	https://toggle-manager-api.herokuapp.com/api/toggles?access_token=7b66685f-fae2-4769-b242-67b803868f63
 	 
  	Request body:{
                 "name": "isButtonGreen",
@@ -217,7 +233,7 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 			}
 	
 	Response body: {
-			    "id": "59ad822795f88f0004e2361e",
+			    "id": "59ade87d1be2e40004f626b7",
 			    "name": "isButtonGreen",
 			    "value": true
 			}
@@ -227,14 +243,16 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 	
 5. Agora vamos associar alguns desses novos Toggles ao nosso usuário de sistema `apiA`. 
 
+	* Configure a extensão POSTMAN para o verbo PUT e adicione a url descrita abaixo
+
 	* Faça a seguinte requisição usando o verbo PUT:
 	
 ```		
 
-	https://toggle-manager-api.herokuapp.com/api/users/59abcf98734d1d25a0f5dfba?access_token=42da6a6c-f992-4bf5-8698-9b584dd35918
+	https://toggle-manager-api.herokuapp.com/api/users/59ade55b1be2e40004f626b4?access_token=7b66685f-fae2-4769-b242-67b803868f63
 	
 	Request body: {
-			    "id": "59ad767595f88f0004e2361a",
+			    "id": "59ade55b1be2e40004f626b4",
 			    "userName": "apiA",
 			    "password": "secret",
 			    "version": "v.1.0.0",
@@ -243,14 +261,10 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 			    	],
 				"toggles":[
 				    {
-					    "id": "59ad7eff95f88f0004e2361c",
-					    "name": "isButtonBlue",
-					    "value": true
+					    "id": "59ade77e1be2e40004f626b5"
 					},
 				    {
-					    "id": "59ad815b95f88f0004e2361d",
-					    "name": "isButtonYellow",
-					    "value": false
+					    "id": "59ade8401be2e40004f626b6"
 					}
 				]
 			}
@@ -260,49 +274,52 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 		
 ```
 
-6. Agora vamos fazer uma consulta para obtermos nosso usuário de sistema e seus respectivos Toggles. Para isso, garanta um token válido para nosso usuário de sistema. 
+6. Agora vamos fazer uma consulta para obtermos nosso usuário de sistema e seus respectivos Toggles. Para isso, garanta um token válido para nosso usuário(`apiA`) de sistema. 
+	
+	* Configure a extensão POSTMAN para o verbo GET e adicione a url descrita abaixo
 	
 	* Faça a seguinte requisição usando o verbo GET:
 	
 ```		
 
-	https://toggle-manager-api.herokuapp.com/api/users/59ad767595f88f0004e2361a?access_token=ef34be86-d6d7-49c3-b062-8535c3412817
+	https://toggle-manager-api.herokuapp.com/api/users/59ade55b1be2e40004f626b4?access_token=28e31630-1d9b-46ff-b941-4ccab2bc5645
 	
 	Response body: {
-	    "id": "59ad767595f88f0004e2361a",
-	    "userName": "apiA",
-	    "password": "secret",
-	    "version": "v.1.0.0",
-	    "roles": [
-	        "ROLE_USER"
-	    ],
-	    "toggles": [
-	        {
-	            "id": "59ad7eff95f88f0004e2361c",
-	            "name": "isButtonBlue",
-	            "value": true
-	        },
-	        {
-	            "id": "59ad815b95f88f0004e2361d",
-	            "name": "isButtonYellow",
-	            "value": false
-	        }
-	    ]
-	}
+		    "id": "59ade55b1be2e40004f626b4",
+		    "userName": "apiA",
+		    "password": "secret",
+		    "version": "v.1.0.0",
+		    "roles": [
+		        "ROLE_USER"
+		    ],
+		    "toggles": [
+		        {
+		            "id": "59ade77e1be2e40004f626b5",
+		            "name": "isButtonBlue",
+		            "value": true
+		        },
+		        {
+		            "id": "59ade8401be2e40004f626b6",
+		            "name": "isButtonYellow",
+		            "value": false
+		        }
+		    ]
+		}
 	
 	
 ```
 
-7. É possivel compartilhar um toggle com outra API. Vamos criar um novo usuário de sistema, e associar o Toggle Green a ele
+7. É possivel compartilhar um toggle com outra API. Vamos criar um novo usuário de sistema, e associar o toggle Green a ele
+	
+	* Configure a extensão POSTMAN para o verbo POST e adicione a url descrita abaixo
 	
 	* Com um token válido de um usuário de sistema `ROLE_ADMIN`, faça a seguinte requisição usando o verbo POST:
 	
 ```		
 
-	https://toggle-manager-api.herokuapp.com/api/users?access_token=42da6a6c-f992-4bf5-8698-9b584dd35918
+	https://toggle-manager-api.herokuapp.com/api/users?access_token=7b66685f-fae2-4769-b242-67b803868f63
   	
 	Request body:  { 
-  					"id": "59ad794595f88f0004e2361b",
 			        "userName": "apiB",
 			        "password": "secret",
 			        "version": "v.1.0.0",
@@ -312,38 +329,40 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 		        }
  		
  	Response body: {
-			    "id": "59ad794595f88f0004e2361b",
-		        "userName": "apiB",
-		        "password": "secret",
-		        "version": "v.1.0.0",
-		        "roles": [
-		            "ROLE_USER"
-		        ],
-			    "toggles": null
-			}
+		    "id": "59adea691be2e40004f626b8",
+		    "userName": "apiB",
+		    "password": "secret",
+		    "version": "v.1.0.0",
+		    "roles": [
+		        "ROLE_USER"
+		    ],
+		    "toggles": null
+		}
 			
 			
 ```
 
 8. Agora vamos associar o Toggle Green ao novo usuário de sistema apiB
 
+	* Configure a extensão POSTMAN para o verbo PUT e adicione a url descrita abaixo
+	
 	* Faça a seguinte requisição usando o verbo PUT:
 	
 ```		
 
-	https://toggle-manager-api.herokuapp.com/api/users/59ad794595f88f0004e2361b?access_token=42da6a6c-f992-4bf5-8698-9b584dd35918
+	https://toggle-manager-api.herokuapp.com/api/users/59adea691be2e40004f626b8?access_token=7b66685f-fae2-4769-b242-67b803868f63
 	
 	Request body: {
-			    "id": "59ad794595f88f0004e2361b",
+			    "id": "59adea691be2e40004f626b8",
 			    "userName": "apiB",
 			    "password": "secret",
 			    "version": "v.1.0.0",
 			    "roles": [
 			        "ROLE_USER"
-			    	],
+			    ],
 				"toggles":[
 				   {
-			    		"id": "59ad822795f88f0004e2361e"
+			    		"id": "59ade87d1be2e40004f626b7"
 					}
 				]
 			}
@@ -355,59 +374,63 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 
 9. Vamos consultar nosso novo usuário de sistema. 
 	
+	* Configure a extensão POSTMAN para o verbo GET e adicione a url descrita abaixo
+	
 	* Faça a seguinte requisição usando o verbo GET:
 	
 ```		
 
-	https://toggle-manager-api.herokuapp.com/api/users/59ad794595f88f0004e2361b?access_token=1af9cef3-f2ff-4be0-bc30-f7693ca70f84
+	https://toggle-manager-api.herokuapp.com/api/users/59adea691be2e40004f626b8?access_token=64ddda1e-c746-4413-9650-a186e1c7efa4
 	
 	Request body:{
-			    "id": "59ad794595f88f0004e2361b",
-			    "userName": "apiB",
-			    "password": "secret",
-			    "version": "v.1.0.0",
-			    "roles": [
-			        "ROLE_USER"
-			    ],
-			    "toggles": [
-			        {
-			            "id": "59ad822795f88f0004e2361e",
-			            "name": "isButtonGreen",
-			            "value": true
-			        }
-			    ]
-			}
+		    "id": "59adea691be2e40004f626b8",
+		    "userName": "apiB",
+		    "password": "secret",
+		    "version": "v.1.0.0",
+		    "roles": [
+		        "ROLE_USER"
+		    ],
+		    "toggles": [
+		        {
+		            "id": "59ade87d1be2e40004f626b7",
+		            "name": "isButtonGreen",
+		            "value": true
+		        }
+		    ]
+		}
 			
 			
 ```
 
 10. Agora vamos compartilhar o Toggle Yellow com a ApiB, assim ambos compartilham seu valor
 
+	* Configure a extensão POSTMAN para o verbo PUT e adicione a url descrita abaixo
+	
 	* Faça a seguinte requisição usando o verbo PUT:
 	
 ```		
 
-	https://toggle-manager-api.herokuapp.com/api/users/59ad794595f88f0004e2361b?access_token=42da6a6c-f992-4bf5-8698-9b584dd35918
+	https://toggle-manager-api.herokuapp.com/api/users/59adea691be2e40004f626b8?access_token=7b66685f-fae2-4769-b242-67b803868f63
 	
 	Request body: {
-			    "id": "59ad794595f88f0004e2361b",
-			    "userName": "apiB",
-			    "password": "secret",
-			    "version": "v.1.0.0",
-			    "roles": [
-			        "ROLE_USER"
-			    	],
-				"toggles":[
-				   {
-			    		"id": "59ad822795f88f0004e2361e"
-					},
-					{
-			            "id": "59ad815b95f88f0004e2361d",
-			            "name": "isButtonYellow",
-			            "value": false
-			        }
-				]
-			}
+		    "id": "59adea691be2e40004f626b8",
+		    "userName": "apiB",
+		    "password": "secret",
+		    "version": "v.1.0.0",
+		    "roles": [
+		        "ROLE_USER"
+		    ],
+		    "toggles": [
+		        {
+		            "id": "59ade87d1be2e40004f626b7"
+		        },
+		        {
+		            "id": "59ade8401be2e40004f626b6",
+		            "name": "isButtonYellow",
+		            "value": false
+		        }
+		    ]
+		}
 				
 	Response Body: Status 200 OK
 	
@@ -416,46 +439,50 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 
 10. Agora podemos obter os Toggles de nosso novo usuário de sistema apiB e validar se o Toggle Yellow foi compartlhado
 
+	* Configure a extensão POSTMAN para o verbo GET e adicione a url descrita abaixo
+	
 	* Faça a seguinte requisição usando o verbo GET:
 	
 ```		
 
-	https://toggle-manager-api.herokuapp.com/api/users/59ad794595f88f0004e2361b?access_token=1af9cef3-f2ff-4be0-bc30-f7693ca70f84
+	https://toggle-manager-api.herokuapp.com/api/users/59adea691be2e40004f626b8?access_token=64ddda1e-c746-4413-9650-a186e1c7efa4
 	
 	Response body: {
-	    "id": "59ad794595f88f0004e2361b",
-	    "userName": "apiB",
-	    "password": "secret",
-	    "version": "v.1.0.0",
-	    "roles": [
-	        "ROLE_USER"
-	    ],
-	    "toggles": [
-	        {
-	            "id": "59ad822795f88f0004e2361e",
-	            "name": "isButtonGreen",
-	            "value": true
-	        },
-	        {
-	            "id": "59ad815b95f88f0004e2361d",
-	            "name": "isButtonYellow",
-	            "value": false
-	        }
-	    ]
-	}
+		    "id": "59adea691be2e40004f626b8",
+		    "userName": "apiB",
+		    "password": "secret",
+		    "version": "v.1.0.0",
+		    "roles": [
+		        "ROLE_USER"
+		    ],
+		    "toggles": [
+		        {
+		            "id": "59ade87d1be2e40004f626b7",
+		            "name": "isButtonGreen",
+		            "value": true
+		        },
+		        {
+		            "id": "59ade8401be2e40004f626b6",
+		            "name": "isButtonYellow",
+		            "value": false
+		        }
+		    ]
+		}
 	
 	
 ```
 
-* Podemos observar que o Toggle de `id: 59ad815b95f88f0004e2361d` e `name: isButtonYellow` se encontra associado aos usuários de sistemas `apiA` e `apiB`. Quando houver uma alteração no valor do Toggle, o mesmo será compartilhado a todos os usuários de sistemas que tem tal toggle associado
+* Podemos observar que o Toggle de `id: 59ade8401be2e40004f626b6` e `name: isButtonYellow` se encontra associado aos usuários de sistemas `apiA` e `apiB`. Quando houver uma alteração no valor do Toggle, o mesmo será compartilhado a todos os usuários de sistemas que tem tal toggle associado
 	
 11. Para finalizar, vamos criar um novo Toggle com `name: isButtonGreen`, porem, com seu valor false, pois para o usuário de sistema apiA, o valor do Toggle `name : isButtonGreen` deverár ser `false`
 
+	* Configure a extensão POSTMAN para o verbo POST e adicione a url descrita abaixo
+	
 	* Faça a seguinte requisição usando o verbo POST:
 	
 ```		
 
-	https://toggle-manager-api.herokuapp.com/api/toggles?access_token=42da6a6c-f992-4bf5-8698-9b584dd35918
+	https://toggle-manager-api.herokuapp.com/api/toggles?access_token=7b66685f-fae2-4769-b242-67b803868f63
 
 	Request body: {
 			    "name": "isButtonGreen",
@@ -463,46 +490,48 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 			}
 
 	Response body:  {
-			    "id": "59ad915a95f88f0004e2361f",
-			    "name": "isButtonGreen",
-			    "value": false
-			}
+		    "id": "59aded331be2e40004f626b9",
+		    "name": "isButtonGreen",
+		    "value": false
+		}
 			
 			
 ```
 
-12. Agora vamos associar o Toggle `name: isButtonGreen` com `value: false` em nosso usuário de sistema apiA
+12. Agora vamos associar o Toggle `name: isButtonGreen` com `value: false` em nosso usuário de sistema `apiA`
 
+	* Configure a extensão POSTMAN para o verbo PUT e adicione a url descrita abaixo
+	
 	* Faça a seguinte requisição usando o verbo PUT:
 	
 ```		
 
-	https://toggle-manager-api.herokuapp.com/api/users/59ad767595f88f0004e2361a?access_token=42da6a6c-f992-4bf5-8698-9b584dd35918
+	https://toggle-manager-api.herokuapp.com/api/users/59ade55b1be2e40004f626b4?access_token=7b66685f-fae2-4769-b242-67b803868f63
 	
 	Request body: {
-		        "id": "59ad767595f88f0004e2361a",
-		        "userName": "apiA",
-		        "password": "secret",
-		        "version": "v.1.0.0",
-		        "roles": [
-		            "ROLE_USER"
-		        ],
-		        "toggles": [
-		            {
-		                "id": "59ad7eff95f88f0004e2361c",
-		                "name": "isButtonBlue",
-		                "value": true
-		            },
-		            {
-		                "id": "59ad815b95f88f0004e2361d",
-		                "name": "isButtonYellow",
-		                "value": false
-		            },
-		            {
-		            	"id": "59ad915a95f88f0004e2361f"
-		            }
-		        ]
-		    }
+		    "id": "59ade55b1be2e40004f626b4",
+		    "userName": "apiA",
+		    "password": "secret",
+		    "version": "v.1.0.0",
+		    "roles": [
+		        "ROLE_USER"
+		    ],
+		    "toggles": [
+		        {
+		            "id": "59ade77e1be2e40004f626b5",
+		            "name": "isButtonBlue",
+		            "value": true
+		        },
+		        {
+		            "id": "59ade8401be2e40004f626b6",
+		            "name": "isButtonYellow",
+		            "value": false
+		        },
+		        {
+		        		"id": "59aded331be2e40004f626b9"
+		        	}
+		    ]
+		}
 			    
 	Response Body: Response Body: Status 200 OK
 	
@@ -511,45 +540,63 @@ Os serviços da API podem ser consumidos em [Toggle Management API](https://togg
 
 13. Agora vamos consultar e garantir que temos o `Toggle green`, com `valor false para a apiA` e `valor true para a apiB`
 	
+	* Configure a extensão POSTMAN para o verbo GET e adicione a url descrita abaixo
+	
 	* Faça a seguinte requisição usando o verbo GET:
 	
 ```		
 
-	https://toggle-manager-api.herokuapp.com/api/users/59ad767595f88f0004e2361a?access_token=ef34be86-d6d7-49c3-b062-8535c3412817
+	https://toggle-manager-api.herokuapp.com/api/users/59ade55b1be2e40004f626b4?access_token=28e31630-1d9b-46ff-b941-4ccab2bc5645
 	
 	Response body: {
-			    "id": "59ad767595f88f0004e2361a",
-			    "userName": "apiA",
-			    "password": "secret",
-			    "version": "v.1.0.0",
-			    "roles": [
-			        "ROLE_USER"
-			    ],
-			    "toggles": [
-			        {
-			            "id": "59ad7eff95f88f0004e2361c",
-			            "name": "isButtonBlue",
-			            "value": true
-			        },
-			        {
-			            "id": "59ad815b95f88f0004e2361d",
-			            "name": "isButtonYellow",
-			            "value": false
-			        },
-			        {
-			            "id": "59ad915a95f88f0004e2361f",
-			            "name": "isButtonGreen",
-			            "value": false
-			        }
-			    ]
-			}
+		    "id": "59ade55b1be2e40004f626b4",
+		    "userName": "apiA",
+		    "password": "secret",
+		    "version": "v.1.0.0",
+		    "roles": [
+		        "ROLE_USER"
+		    ],
+		    "toggles": [
+		        {
+		            "id": "59ade77e1be2e40004f626b5",
+		            "name": "isButtonBlue",
+		            "value": true
+		        },
+		        {
+		            "id": "59ade8401be2e40004f626b6",
+		            "name": "isButtonYellow",
+		            "value": false
+		        },
+		        {
+		            "id": "59aded331be2e40004f626b9",
+		            "name": "isButtonGreen",
+		            "value": false
+		        }
+		    ]
+		}
 			
 			
 ```
 
+### Vendo o trabalho realizado através da [Consumer Toggle Manager API](https://consumer-toggle-manager-api.herokuapp.com/)
+
+1. Obtenha um token válido da usuário de sistema que deseja consultar `apiA` ou `apiB`
+
+2. Acesse [Consumer Toggle Manager API](https://consumer-toggle-manager-api.herokuapp.com/)
+
+3. Adicione o token gerado no campo `Digite aqui o Token da API a cosultar` da pagina.
+
+4. Click em `Atualizar`
+
+5. Agora você verá os toggles pertencente ao usuário de sistema consultado, com o botão abilitado, caso o valor do toggle seja true e desabilitado caso o valor do toggle seja false.
+
 ## Observações finais:
 	
 ### Vimos que é possivel criar, alterar, remover e consultar um usuário de sistema, sendo necessário a autenticação e autorização para a realização dos mesmos. É possivel criar, alterar, remover e consultar um toggle, respeitando os perfis "ROLE_USER" e "ROLE_ADMIN" assim como nos serviços expostos para usuáro de sistema. Um Toggle pode ser usado por um ou mais Apis. Uma Toggle pode ter valor distinto entre APIs. Um Toggle pode ser usado por um serviço e outro pode não te-lo configurado para uso. Para acessar os Toggle a API deve se autenticar. Na proxima sessão, onde baixaremos a aplicação do GIT, veremos como trabalhar com as notificações, caso um Toggle seja alterado. E confirmamos a autorização para acesso aos serviços da API.
+
+
+
+
 	
 	
 	
