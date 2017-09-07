@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import com.farfetch.toggle.domain.toggle.ToggleNotFoundException;
 import com.farfetch.toggle.domain.toggle.ToggleRepository;
 import com.google.common.base.Preconditions;
 
+@CrossOrigin(origins = "https://consumer-toggle-manager-api.herokuapp.com")
 @PreAuthorize("hasRole('ROLE_ADMIN')")
 @RequestMapping("/toggles")
 @RepositoryRestController
